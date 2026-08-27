@@ -2,6 +2,9 @@
 
 A React app designed to make getting dressed easier. Catalog your wardrobe, organize your clothes by category, and create outfits using pieces you already own. Whether you're dressing for an event or planning your everyday look, StyleMate helps you find the right outfit faster.
 
+##🚀 Live Demo
+
+
 ## Features
 - Add clothing items with name, category, color, and image
 - Browse wardrobe as a filterable grid (by category)
