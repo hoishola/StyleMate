@@ -213,6 +213,21 @@
   color: #aaa;
 }
 
+.editCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+.editCard input,
+.editCard select {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
 .outfitEditRow {
   display: flex;
   align-items: center;
@@ -225,6 +240,19 @@
   border: none;
   cursor: pointer;
   font-size: 14px;
+}
+
+.editItemList {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.editItemList li {
+  padding: 4px 0;
+  font-size: 13px;
 }
 
 /*  Outfit Builder + List */

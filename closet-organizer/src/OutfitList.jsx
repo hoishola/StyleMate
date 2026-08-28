@@ -1,19 +1,29 @@
 import { useState } from 'react'
 import styles from './Wardrobe.module.css'
 
-export const OutfitList = ({ outfits, wardrobe, onDelete, onRename }) => {
+export const OutfitList = ({ outfits, wardrobe, onDelete, onUpdate }) => {
   const [editingId, setEditingId] = useState(null)
   const [editName, setEditName] = useState('')
+  const [editItemIds, setEditItemIds] = useState([])
 
   const startEditing = (outfit) => {
     setEditingId(outfit.id)
     setEditName(outfit.name)
+    setEditItemIds(outfit.itemIds)
   }
 
-  const saveRename = (id) => {
+  const toggleEditItem = (id) => {
+    if (editItemIds.includes(id)) {
+      setEditItemIds(editItemIds.filter((itemId) => itemId !== id))
+    } else {
+      setEditItemIds([...editItemIds, id])
+    }
+  }
+
+  const saveEdit = (id) => {
     const trimmed = editName.trim()
-    if (trimmed) {
-      onRename(id, trimmed)
+    if (trimmed && editItemIds.length > 0) {
+      onUpdate(id, trimmed, editItemIds)
     }
     setEditingId(null)
   }
@@ -31,13 +41,32 @@ export const OutfitList = ({ outfits, wardrobe, onDelete, onRename }) => {
           return (
             <div className={styles.outfitCard} key={outfit.id}>
               {editingId === outfit.id ? (
-                <div className={styles.outfitEditRow}>
+                <div>
                   <input
                     value={editName}
                     onChange={(e) => setEditName(e.target.value)}
                   />
-                  <button onClick={() => saveRename(outfit.id)}>Save</button>
-                  <button onClick={() => setEditingId(null)}>Cancel</button>
+
+                  <p>Choose items:</p>
+                  <ul className={styles.editItemList}>
+                    {wardrobe.map((item) => (
+                      <li key={item.id}>
+                        <label>
+                          <input
+                            type="checkbox"
+                            checked={editItemIds.includes(item.id)}
+                            onChange={() => toggleEditItem(item.id)}
+                          />
+                          {item.name} ({item.category})
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className={styles.outfitEditRow}>
+                    <button onClick={() => saveEdit(outfit.id)}>Save</button>
+                    <button onClick={() => setEditingId(null)}>Cancel</button>
+                  </div>
                 </div>
               ) : (
                 <div className={styles.outfitEditRow}>

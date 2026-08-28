@@ -81,12 +81,6 @@ function App() {
       return
     }
 
-    const handleRenameOutfit = (id, newName) => {
-  setOutfits(outfits.map((outfit) =>
-    outfit.id === id ? { ...outfit, name: newName } : outfit
-  ))
-}
-
     const randomTop = tops[Math.floor(Math.random() * tops.length)]
     const randomBottom = bottoms[Math.floor(Math.random() * bottoms.length)]
     const randomShoe = shoes[Math.floor(Math.random() * shoes.length)]
@@ -94,8 +88,20 @@ function App() {
     setSelectedForOutfit([randomTop.id, randomBottom.id, randomShoe.id])
   }
 
+  const handleUpdateOutfit = (id, newName, newItemIds) => {
+  setOutfits(outfits.map((outfit) =>
+    outfit.id === id ? { ...outfit, name: newName, itemIds: newItemIds } : outfit
+  ))
+}
+
   const handleDeleteOutfit = (id) => {
-  setOutfits(outfits.filter((outfit) => outfit.id !== id))
+    setOutfits(outfits.filter((outfit) => outfit.id !== id))
+  }
+
+  const handleUpdateItem = (id, updatedFields) => {
+  setWardrobe(wardrobe.map((item) =>
+    item.id === id ? { ...item, ...updatedFields } : item
+  ))
 }
 
   const handleResetAll = () => {
@@ -129,11 +135,12 @@ function App() {
             <FilterBar currentFilter={filter} onFilterChange={setFilter} />
             <p className={styles.itemCount}>{wardrobe.length} {wardrobe.length === 1 ? 'item' : 'items'} in your wardrobe</p>
             <WardrobeGrid
-              items={filteredWardrobe}
-              onDelete={handleDelete}
-              onToggleFavorite={handleToggleFavorite}
-              selectedForOutfit={selectedForOutfit}
-              onToggleSelectForOutfit={handleToggleSelectForOutfit}
+            items={filteredWardrobe}
+            onDelete={handleDelete}
+            onToggleFavorite={handleToggleFavorite}
+            selectedForOutfit={selectedForOutfit}
+            onToggleSelectForOutfit={handleToggleSelectForOutfit}
+            onUpdateItem={handleUpdateItem}
             />
             <button className={styles.randomButton} onClick={handleGenerateRandomOutfit}>🎲 Build a Look</button>
             <OutfitBuilder
@@ -146,7 +153,7 @@ function App() {
             outfits={outfits}
             wardrobe={wardrobe}
             onDelete={handleDeleteOutfit}
-            onRename={handleRenameOutfit}
+            onUpdate={handleUpdateOutfit}
             />
 
             <div className={styles.resetSection}>
