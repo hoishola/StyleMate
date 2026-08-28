@@ -81,12 +81,22 @@ function App() {
       return
     }
 
+    const handleRenameOutfit = (id, newName) => {
+  setOutfits(outfits.map((outfit) =>
+    outfit.id === id ? { ...outfit, name: newName } : outfit
+  ))
+}
+
     const randomTop = tops[Math.floor(Math.random() * tops.length)]
     const randomBottom = bottoms[Math.floor(Math.random() * bottoms.length)]
     const randomShoe = shoes[Math.floor(Math.random() * shoes.length)]
 
     setSelectedForOutfit([randomTop.id, randomBottom.id, randomShoe.id])
   }
+
+  const handleDeleteOutfit = (id) => {
+  setOutfits(outfits.filter((outfit) => outfit.id !== id))
+}
 
   const handleResetAll = () => {
     setWardrobe([])
@@ -132,7 +142,12 @@ function App() {
               onSave={handleSaveOutfit}
               onError={setInfoMessage}
             />
-            <OutfitList outfits={outfits} wardrobe={wardrobe} />
+            <OutfitList
+            outfits={outfits}
+            wardrobe={wardrobe}
+            onDelete={handleDeleteOutfit}
+            onRename={handleRenameOutfit}
+            />
 
             <div className={styles.resetSection}>
               <button className={styles.resetButton} onClick={() => setShowResetConfirm(true)}>

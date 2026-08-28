@@ -213,6 +213,20 @@
   color: #aaa;
 }
 
+.outfitEditRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.editButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 /*  Outfit Builder + List */
 .outfitSection {
   background: #f9f5f0;
