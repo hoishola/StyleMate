@@ -3,7 +3,7 @@
 A React app designed to make getting dressed easier. Catalog your wardrobe, organize your clothes by category, and create outfits using pieces you already own. Whether you're dressing for an event or planning your everyday look, StyleMate helps you find the right outfit faster.
 
 ##🚀 Live Demo
-
+https://stylemate-topaz.vercel.app
 
 ## Features
 - Add clothing items with name, category, color, and image
@@ -24,5 +24,5 @@ A React app designed to make getting dressed easier. Catalog your wardrobe, orga
 - CSS Modules
 
 ## Planned next steps
-- Image upload instead of URL-only
+- Image upload instead of URL only
 - AI-powered outfit matching suggestions
