@@ -33,7 +33,7 @@ export const WardrobeGrid = ({ items, onDelete, onToggleFavorite, selectedForOut
   }
 
   if (items.length === 0) {
-    return <p className={styles.emptyState}>Your closet's empty — add your first item above!</p>
+    return <p className={styles.emptyState}>Your wardrobe is waiting! Add your first item above to start building your collection.</p>
   }
 
   return (
