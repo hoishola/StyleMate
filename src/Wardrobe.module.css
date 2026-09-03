@@ -228,31 +228,42 @@
   font-size: 13px;
 }
 
-.outfitEditRow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.editButton {
-  background: none;
+.demoButton {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 10px 20px;
+  background: #92400e;
+  color: white;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
 }
 
-.editItemList {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0;
-  max-height: 150px;
-  overflow-y: auto;
+.demoButton:hover {
+  opacity: 0.9;
 }
 
-.editItemList li {
-  padding: 4px 0;
-  font-size: 13px;
+.randomButton {
+  padding: 10px 18px;
+  background: white;
+  color: #92400e;
+  border: 1px solid #92400e;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.randomButton:hover {
+  background: #92400e;
+  color: white;
+}
+
+.dark .randomButton {
+  background: #2a2a2a;
+  color: #fbbf24;
+  border-color: #fbbf24;
 }
 
 /*  Outfit Builder + List */
@@ -334,6 +345,33 @@
   border-radius: 8px;
   display: block;
   margin-bottom: 4px;
+}
+
+.outfitEditRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.editButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.editItemList {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.editItemList li {
+  padding: 4px 0;
+  font-size: 13px;
 }
 
 /* About Section  */
@@ -433,28 +471,6 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-}
-
-.randomButton {
-  padding: 10px 18px;
-  background: white;
-  color: #92400e;
-  border: 1px solid #92400e;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
-.randomButton:hover {
-  background: #92400e;
-  color: white;
-}
-
-.dark .randomButton {
-  background: #2a2a2a;
-  color: #fbbf24;
-  border-color: #fbbf24;
 }
 
 /*  Responsive  */

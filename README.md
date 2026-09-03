@@ -5,6 +5,12 @@ A React app designed to make getting dressed easier. Catalog your wardrobe, orga
 ## 🚀 Live Demo
 https://stylemate-topaz.vercel.app
 
+## Screenshots
+
+![Wardrobe Grid](./screenshots/wardrobe.png)
+
+![Saved Outfits](./screenshots/outfits.png)
+
 ## Features
 - Add clothing items with name, category, color, and image
 - Browse wardrobe as a filterable grid (by category)

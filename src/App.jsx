@@ -10,6 +10,14 @@ import { About } from './About'
 import { ConfirmModal } from './ConfirmModal'
 import { InfoModal } from './InfoModal'
 
+const sampleWardrobe = [
+  { id: 1001, name: 'White Tee', category: 'Tops', color: 'White', imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300', favorite: false },
+  { id: 1002, name: 'Blue Jeans', category: 'Bottoms', color: 'Blue', imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300', favorite: false },
+  { id: 1003, name: 'White Sneakers', category: 'Shoes', color: 'White', imageUrl: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300', favorite: true },
+  { id: 1004, name: 'Denim Jacket', category: 'Outerwear', color: 'Blue', imageUrl: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300', favorite: false },
+  { id: 1005, name: 'Black Cap', category: 'Accessories', color: 'Black', imageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=300', favorite: false },
+]
+
 function App() {
   const [wardrobe, setWardrobe] = useState(() => {
     const saved = localStorage.getItem('wardrobe')
@@ -89,26 +97,30 @@ function App() {
   }
 
   const handleUpdateOutfit = (id, newName, newItemIds) => {
-  setOutfits(outfits.map((outfit) =>
-    outfit.id === id ? { ...outfit, name: newName, itemIds: newItemIds } : outfit
-  ))
-}
+    setOutfits(outfits.map((outfit) =>
+      outfit.id === id ? { ...outfit, name: newName, itemIds: newItemIds } : outfit
+    ))
+  }
 
   const handleDeleteOutfit = (id) => {
     setOutfits(outfits.filter((outfit) => outfit.id !== id))
   }
 
   const handleUpdateItem = (id, updatedFields) => {
-  setWardrobe(wardrobe.map((item) =>
-    item.id === id ? { ...item, ...updatedFields } : item
-  ))
-}
+    setWardrobe(wardrobe.map((item) =>
+      item.id === id ? { ...item, ...updatedFields } : item
+    ))
+  }
 
   const handleResetAll = () => {
     setWardrobe([])
     setOutfits([])
     setSelectedForOutfit([])
     setShowResetConfirm(false)
+  }
+
+  const handleLoadDemoData = () => {
+    setWardrobe(sampleWardrobe)
   }
 
   const filteredWardrobe = filter === 'All'
@@ -132,15 +144,20 @@ function App() {
         ) : (
           <>
             <AddItemForm onAdd={handleAddItem} onError={setInfoMessage} />
+            {wardrobe.length === 0 && (
+              <button className={styles.demoButton} onClick={handleLoadDemoData}>
+                ✨ Load Demo Data
+              </button>
+            )}
             <FilterBar currentFilter={filter} onFilterChange={setFilter} />
             <p className={styles.itemCount}>{wardrobe.length} {wardrobe.length === 1 ? 'item' : 'items'} in your wardrobe</p>
             <WardrobeGrid
-            items={filteredWardrobe}
-            onDelete={handleDelete}
-            onToggleFavorite={handleToggleFavorite}
-            selectedForOutfit={selectedForOutfit}
-            onToggleSelectForOutfit={handleToggleSelectForOutfit}
-            onUpdateItem={handleUpdateItem}
+              items={filteredWardrobe}
+              onDelete={handleDelete}
+              onToggleFavorite={handleToggleFavorite}
+              selectedForOutfit={selectedForOutfit}
+              onToggleSelectForOutfit={handleToggleSelectForOutfit}
+              onUpdateItem={handleUpdateItem}
             />
             <button className={styles.randomButton} onClick={handleGenerateRandomOutfit}>🎲 Build a Look</button>
             <OutfitBuilder
@@ -150,10 +167,10 @@ function App() {
               onError={setInfoMessage}
             />
             <OutfitList
-            outfits={outfits}
-            wardrobe={wardrobe}
-            onDelete={handleDeleteOutfit}
-            onUpdate={handleUpdateOutfit}
+              outfits={outfits}
+              wardrobe={wardrobe}
+              onDelete={handleDeleteOutfit}
+              onUpdate={handleUpdateOutfit}
             />
 
             <div className={styles.resetSection}>
